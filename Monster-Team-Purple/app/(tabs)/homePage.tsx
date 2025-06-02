@@ -1,15 +1,31 @@
+import { useUserContext } from "@/src/context/UserCOntext";
 import { useRouter } from "expo-router";
+import { useEffect } from "react";
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 
 export default function HomePage() {
   const router = useRouter();
+  const { currentUser } = useUserContext();
+
+  useEffect(() => {
+    if (!currentUser) {
+      router.replace("/(tabs)/StartScreen");
+    }
+  }, [currentUser]);
 
   return (
     <View style={styles.container}>
+      {currentUser ? (
+        <>
+          <Text style={styles.welcome}>Välkommen, {currentUser.name}!</Text>
+          <Text>Du är nu inloggad som {currentUser.name}.</Text>
+        </>
+      ) : (
+        <Text>Ingen användare vald!</Text>
+      )}
       <Text style={styles.welcome}>Hej igen 👋</Text>
       <Text style={styles.message}>Detta är en HomePage sidan!</Text>
       <Text style={styles.message}>
-        {" "}
         Här kommer main Ui vara för att visa post osv!
       </Text>
 
