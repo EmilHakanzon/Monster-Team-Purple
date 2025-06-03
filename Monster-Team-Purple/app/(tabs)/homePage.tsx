@@ -1,3 +1,4 @@
+import UserCardComponent from "@/src/components/UserCardComponent";
 import { useUserContext } from "@/src/context/UserCOntext";
 import { useRouter } from "expo-router";
 import { useEffect } from "react";
@@ -17,6 +18,8 @@ export default function HomePage() {
     <View style={styles.container}>
       {currentUser ? (
         <>
+          <UserCardComponent userId={currentUser.id} />
+
           <Text style={styles.welcome}>Välkommen, {currentUser.name}!</Text>
           <Text>Du är nu inloggad som {currentUser.name}.</Text>
         </>
