@@ -1,7 +1,7 @@
 import { useUserContext } from "@/src/context/UserCOntext";
 import React from "react";
 import { Image, StyleSheet, Text, View } from "react-native";
-import { getAvatarUrl } from "../Utility/GetAvatarUrlImage";
+import { getAvatarUrl } from "../utility/GetAvatarUrlImage";
 
 type Props = {
   userId: string;
