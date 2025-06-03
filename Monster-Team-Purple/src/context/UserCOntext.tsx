@@ -1,7 +1,5 @@
-// context/UserContext.tsx
 import React, { createContext, useContext, useState } from "react";
 import type { User } from "../types/UserType";
-
 
 interface UserContextType {
   users: User[];
@@ -22,6 +20,22 @@ export const UserProvider: React.FC<{ children: React.ReactNode }> = ({
     {
       id: "2",
       name: "MonsterReact",
+    },
+    {
+      id: "3",
+      name: "GreenMonster",
+    },
+    {
+      id: "4",
+      name: "YellowMonster",
+    },
+    {
+      id: "5",
+      name: "Troll",
+    },
+    {
+      id: "6",
+      name: "Witch",
     },
   ]);
 
