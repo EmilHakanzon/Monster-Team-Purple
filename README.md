@@ -10,6 +10,8 @@ git clone https://github.com/EmilHakanzon/Monster-Team-Purple/
 cd Monster-Team-Purple
 
 ```
+cd Monster-Team-purple
+```
 
 ```
 npm i 
