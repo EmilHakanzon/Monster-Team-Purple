@@ -1,4 +1,5 @@
-import { UserProvider } from "@/src/context/UserCOntext"; // <-- Import your provider
+import { UserProvider } from "@/src/context/UserCOntext";
+import { PostProvider } from "@/src/context/PostContexts";
 import { useFonts } from "expo-font";
 import { Stack } from "expo-router";
 import { StatusBar } from "expo-status-bar";
@@ -15,12 +16,14 @@ export default function RootLayout() {
 
   return (
     <UserProvider>
-      <Stack>
-        <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-        <Stack.Screen name="StartScreen" />
-        <Stack.Screen name="+not-found" />
-      </Stack>
-      <StatusBar style="auto" />
+      <PostProvider>
+        <Stack>
+          <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+          <Stack.Screen name="StartScreen" />
+          <Stack.Screen name="+not-found" />
+        </Stack>
+        <StatusBar style="auto" />
+      </PostProvider >
     </UserProvider>
   );
 }

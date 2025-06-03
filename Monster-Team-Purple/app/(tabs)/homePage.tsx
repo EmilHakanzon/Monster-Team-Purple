@@ -1,17 +1,22 @@
 import { useUserContext } from "@/src/context/UserCOntext";
 import { useRouter } from "expo-router";
 import { useEffect } from "react";
-import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
-
+import { StyleSheet, Text, TouchableOpacity, View, FlatList } from "react-native";
+import { usePostContext } from "@/src/context/PostContexts";
+import PostItem from "@/src/components/PostItem";
+import { Post } from "@/src/components/PostItem";
 export default function HomePage() {
   const router = useRouter();
   const { currentUser } = useUserContext();
+  const { posts } = usePostContext();
+  const renderPostItem = ({ item }: { item: Post }) => <PostItem post={item} />;
 
-  useEffect(() => {
-    if (!currentUser) {
-      router.replace("/(tabs)/StartScreen");
-    }
-  }, [currentUser]);
+  // Utkommenterad för att inte krascha appen
+  // useEffect(() => {
+  //   if (!currentUser) {
+  //     router.replace("/(tabs)/StartScreen");
+  //   }
+  // }, [currentUser]);
 
   return (
     <View style={styles.container}>
@@ -28,6 +33,12 @@ export default function HomePage() {
       <Text style={styles.message}>
         Här kommer main Ui vara för att visa post osv!
       </Text>
+      <FlatList
+        data={posts}
+        keyExtractor={(item) => item.id}
+        renderItem={renderPostItem}
+        contentContainerStyle={styles.listContent}
+      />
 
       <TouchableOpacity
         style={styles.button}
@@ -57,6 +68,9 @@ const styles = StyleSheet.create({
     fontSize: 16,
     color: "#333",
     marginBottom: 30,
+  },
+  listContent: {
+    paddingVertical: 8,
   },
   button: {
     backgroundColor: "#007acc",
