@@ -1,6 +1,7 @@
 import { Entity } from "./Entity";
 
-export type Comment = Entity & {
+// Renamed to avoid collision with native type
+export type PostComment = Entity & {
 	post: string; // Post UUID
 	author: string; // User UUID
 	content: string;
