@@ -1,12 +1,8 @@
-type Post = {
-  id: string;
-  name: string;
-  authorId: string;
-  content: string;
-  likedBy: string[];
-}
+import { Post } from '../types/PostType';
+
 
 type PostContextType = {
+
   posts: Post[];
   addPost: (post: Post) => void;
   toggleLike: (postId: string, userId: string) => void;
@@ -18,7 +14,7 @@ import React, { createContext, useContext, useState } from 'react';
 const PostContext = createContext<PostContextType | undefined>(undefined);
 
 export const PostProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const [posts, setPosts] = useState<Post[]>([{ id: "1", authorId: "1", name: "Monster", content: "Just had my fifth cup of coffee. Toilet, watch out!", likedBy: ["Sylwia", "Harry"] }]);
+  const [posts, setPosts] = useState<Post[]>([{ date: "1st january", id: "1", authorId: "1", name: "Monster Mac Monsterson", content: "Just had my fifth cup of coffee. Toilet, watch out!", likedBy: ["Sylwia", "Harry", "Joel", "Alexander"] }, { date: "1st february", id: "2", authorId: "2", name: "Sylwia", content: "My dogs name is Rolf and he is very cute teehee", likedBy: ["Sylwia", "Harry", "Joel", "Alexander"] }]);
 
   const addPost = (post: Post) => {
     setPosts((prevPosts) => [...prevPosts, post]);

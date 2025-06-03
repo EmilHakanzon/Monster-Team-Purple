@@ -1,45 +1,75 @@
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
+import { Post } from '../types/PostType';
 
-export interface Post {
-	id: string;
-	authorId: string;
-	likedBy: string[];
-	content: string;
-	name: string;
-}
-
+import { useUserContext } from '../context/UserCOntext';
+import { usePostContext } from '../context/PostContexts';
 interface PostItemProps {
 	post: Post;
 }
 
 const PostItem: React.FC<PostItemProps> = ({ post }) => {
+	const { currentUser } = useUserContext()
+	const { toggleLike } = usePostContext()
+
+	const hasLiked = currentUser ? post.likedBy.includes(currentUser.name) : false;
+	const heartIcon = hasLiked ? '❤️' : '🩶';
 	return (
 		<View style={styles.postContainer}>
+
 			<View style={styles.header}>
-				<View style={styles.avatarPlaceholder}>
-					<Text style={styles.avatarText}>{post.name[0].toUpperCase()}</Text>
+				<View style={styles.user}>
+					<View style={styles.avatarPlaceholder}>
+						<Text style={styles.avatarText}>{post.name[0].toUpperCase()}</Text>
+					</View>
+					<View style={{ maxWidth: '60%' }}>
+						<Text style={styles.name}>{post.name}</Text>
+					</View>
 				</View>
-				<View>
-					<Text style={styles.name}>{post.name}</Text>
-					<Text style={styles.authorId}>@{post.authorId}</Text>
-				</View>
+
+				<Text style={styles.dateText}>{post.date}</Text>
 			</View>
+
 
 			<Text style={styles.content}>{post.content}</Text>
 
 			<View style={styles.footer}>
-				<TouchableOpacity style={styles.button}>
-					<Text style={styles.buttonText}>❤️ {post.likedBy.length}</Text>
+				<TouchableOpacity
+					onPress={() => {
+						if (currentUser) {
+							toggleLike(post.id, currentUser.name);
+						}
+					}}
+					style={styles.button}
+				>
+					<Text style={styles.buttonText}>{heartIcon} {post.likedBy.length}</Text>
 				</TouchableOpacity>
 				<TouchableOpacity style={styles.button}>
 					<Text style={styles.buttonText}>💬 Comment</Text>
 				</TouchableOpacity>
 			</View>
+			{post.likedBy.length > 0 && (
+				<Text style={styles.likedByText}>
+					{post.likedBy.slice(0, 3).join(', ')} <Text> {post.likedBy.length > 3 ? `+${post.likedBy.length - 3} more` : ""} </Text>
+				</Text>
+			)}
+
 		</View>
 	);
 };
 
 const styles = StyleSheet.create({
+	dateText: {
+		fontSize: 12,
+		color: '#888',
+		backgroundColor: '#f0f0f0',
+		borderRadius: 8,
+		paddingHorizontal: 8,
+	},
+	likedByText: {
+		color: '#666',
+		fontSize: 12,
+		marginTop: 4,
+	},
 	postContainer: {
 		padding: 16,
 		marginVertical: 8,
@@ -54,7 +84,12 @@ const styles = StyleSheet.create({
 	header: {
 		flexDirection: 'row',
 		alignItems: 'center',
+		justifyContent: 'space-between',
 		marginBottom: 12,
+	},
+	user: {
+		flexDirection: 'row',
+		alignItems: 'center'
 	},
 	avatarPlaceholder: {
 		backgroundColor: '#ccc',

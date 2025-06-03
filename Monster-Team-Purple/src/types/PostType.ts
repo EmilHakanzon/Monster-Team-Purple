@@ -1,7 +1,8 @@
-export interface Post {
+export type Post = {
   id: string;
-  author: string;
-  post: string;
-  likes: string[];
-  comments: Comment[];
-}
+  name: string;
+  authorId: string;
+  content: string;
+  likedBy: string[];
+  date: string;
+};

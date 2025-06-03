@@ -1,10 +1,9 @@
 import { useUserContext } from "@/src/context/UserCOntext";
 import { useRouter } from "expo-router";
-import { useEffect } from "react";
 import { StyleSheet, Text, TouchableOpacity, View, FlatList } from "react-native";
 import { usePostContext } from "@/src/context/PostContexts";
 import PostItem from "@/src/components/PostItem";
-import { Post } from "@/src/components/PostItem";
+import { Post } from "@/src/types/PostType";
 export default function HomePage() {
   const router = useRouter();
   const { currentUser } = useUserContext();
