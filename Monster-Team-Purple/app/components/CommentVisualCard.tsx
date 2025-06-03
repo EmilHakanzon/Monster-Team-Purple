@@ -80,7 +80,7 @@ export default CommentVisualCard;
 
 // Så här kan du använda komponenten i din app:
 
-{/* <CommentVisualCard
+/*{ <CommentVisualCard
   creator="Jax"
   content=" Här är en kommentar som är 
   ganska lång och innehåller
@@ -88,4 +88,4 @@ export default CommentVisualCard;
   ser ut när det är mer än en rad."
   profilePicUrl="https://reactnative.dev/img/tiny_logo.png"
   likes={["A", "B", "C"]}
-/> */}
+/>} */
