@@ -6,6 +6,7 @@ import { usePostContext } from "@/src/context/PostContext";
 import PostItem from "@/src/components/PostItem";
 import { Post } from "@/src/types/PostType";
 import ContentForm from "@/src/components/ContentForm";
+import CommentForm from "@/src/components/CommentForm";
 export default function HomePage() {
   const router = useRouter();
   const { currentUser } = useUserContext();
