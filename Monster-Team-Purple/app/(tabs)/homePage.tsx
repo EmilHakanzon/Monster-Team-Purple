@@ -5,6 +5,7 @@ import { StyleSheet, Text, TouchableOpacity, View, FlatList } from "react-native
 import { usePostContext } from "@/src/context/PostContext";
 import PostItem from "@/src/components/PostItem";
 import { Post } from "@/src/types/PostType";
+import ContentForm from "@/src/components/ContentForm";
 export default function HomePage() {
   const router = useRouter();
   const { currentUser } = useUserContext();
@@ -30,11 +31,7 @@ export default function HomePage() {
       ) : (
         <Text>Ingen användare vald!</Text>
       )}
-      <Text style={styles.welcome}>Hej igen 👋</Text>
-      <Text style={styles.message}>Detta är en HomePage sidan!</Text>
-      <Text style={styles.message}>
-        Här kommer main Ui vara för att visa post osv!
-      </Text>
+      <ContentForm />
       <FlatList
         data={posts}
         keyExtractor={(item) => item.id}
