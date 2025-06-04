@@ -1,6 +1,7 @@
 import { useUserContext } from "@/src/context/UserCOntext";
 import React from "react";
 import { Image, StyleSheet, Text, View } from "react-native";
+import { getAvatarUrl } from "../utility/GetAvatarUrlImage";
 
 type Props = {
   userId: string;
@@ -20,7 +21,8 @@ export default function UserCardComponent({ userId }: Props) {
   }
 
   // Placeholder-bild (använder pravatar + userId för unikhet)
-  const avatarUrl = `https://i.pravatar.cc/150?u=${user.id}`;
+  // Ändrad så den använder utility-funktionen här med från din logik.
+  const avatarUrl = getAvatarUrl(user.id);
 
   return (
     <View style={styles.card}>
