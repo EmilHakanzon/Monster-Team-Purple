@@ -2,7 +2,7 @@ import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import { Post } from '../types/PostType';
 
 import { useUserContext } from '../context/UserCOntext';
-import { usePostContext } from '../context/PostContexts';
+import { usePostContext } from '../context/PostContext';
 interface PostItemProps {
 	post: Post;
 }

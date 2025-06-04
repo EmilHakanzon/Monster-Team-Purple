@@ -2,7 +2,7 @@ import UserCardComponent from "@/src/components/UserCardComponent";
 import { useUserContext } from "@/src/context/UserCOntext";
 import { useRouter } from "expo-router";
 import { StyleSheet, Text, TouchableOpacity, View, FlatList } from "react-native";
-import { usePostContext } from "@/src/context/PostContexts";
+import { usePostContext } from "@/src/context/PostContext";
 import PostItem from "@/src/components/PostItem";
 import { Post } from "@/src/types/PostType";
 export default function HomePage() {
